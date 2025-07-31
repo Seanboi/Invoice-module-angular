@@ -1,0 +1,18 @@
+<main class="main">
+  <div class="container">
+    <h1>Invoice Form</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <input name="name" [(ngModel)]="userData.name" placeholder="Name" required />
+      <input name="number" [(ngModel)]="userData.number" placeholder="Number" required />
+      <input name="item" [(ngModel)]="userData.item" placeholder="Item" required />
+      <input name="date" type="date" [(ngModel)]="userData.date" required />
+      <input name="itemprice" type="number" [(ngModel)]="userData.itemprice" placeholder="Item Price" required />
+      <input name="amount" type="number" [(ngModel)]="userData.amount" placeholder="Amount" required />
+      <label><input type="checkbox" name="approvable" [(ngModel)]="userData.approvable" />
+        Make this document approvable?
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</main>
