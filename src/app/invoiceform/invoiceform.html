@@ -14,5 +14,11 @@
 
       <button type="submit">Submit</button>
     </form>
+
+
+    <p *ngIf="!successMessage" class="success-message">
+      {{ successMessage }}
+    </p>
+
   </div>
 </main>

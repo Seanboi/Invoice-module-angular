@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {InvoiceService} from '../invoice.service';
 import {Approval} from '../approval.model';
@@ -11,9 +12,9 @@ import {Approval} from '../approval.model';
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './invoiceform.html',
   styleUrl: './invoiceform.css'
+
 })
 export class Invoiceform implements OnInit {
-  protected = Invoiceform;
   userData = {
     name: '',
     number: '',
@@ -23,15 +24,22 @@ export class Invoiceform implements OnInit {
     amount: 0,
     approvable: false
   };
+  successMessage: string | null = null;
 
-  constructor(private InvoiceService: InvoiceService) {}
+  constructor(private InvoiceService: InvoiceService,private router: Router) {}
   ngOnInit() {}
+
 
 
   onSubmit(form: NgForm) {
     if (form.valid) {
       this.InvoiceService.createInvoice(this.userData).subscribe({
         next: response => {
+          this.successMessage = 'Successfully submitted!';
+          setTimeout(() => {
+            this.successMessage = null;
+            this.router.navigate(['/']);
+          }, 2000);
           console.log('Invoice Form submitted successfully:', response);
         },
         error: err => {

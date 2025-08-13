@@ -12,7 +12,7 @@ import {ApprovalService} from '../approval.service';
   styleUrl: './viewdocuments.css'
 })
 export class Viewdocuments implements OnInit {
-  protected = Viewdocuments;
+
 
   approvals: Approval[] = [];
   selectedFilter = 'all';
@@ -20,7 +20,7 @@ export class Viewdocuments implements OnInit {
   constructor(private approvalService: ApprovalService) {}
 
   ngOnInit(): void {
-    this.loadApprovals();
+    this.onFilterChange();
   }
 
   onFilterChange(): void {
